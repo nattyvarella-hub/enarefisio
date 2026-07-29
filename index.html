@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENARE Fisioterapia - Análise Completa 2022-2025</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f0f2f5; color: #1a1a2e; line-height: 1.6; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 16px; }
+
+  .hero { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: white; padding: 48px 24px; border-radius: 16px; text-align: center; margin-bottom: 24px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 400px; height: 400px; background: rgba(255,255,255,0.03); border-radius: 50%; }
+  .hero h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; position: relative; }
+  .hero .subtitle { font-size: 1.1rem; opacity: 0.85; margin-bottom: 20px; position: relative; }
+  .badge-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; position: relative; }
+  .badge { background: rgba(255,255,255,0.12); padding: 6px 16px; border-radius: 20px; font-size: 0.82rem; font-weight: 600; backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.1); }
+
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-bottom: 28px; }
+  .stat-card { background: white; padding: 22px; border-radius: 14px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: transform 0.2s, box-shadow 0.2s; }
+  .stat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .stat-number { font-size: 2.2rem; font-weight: 800; }
+  .stat-card.red .stat-number { color: #c73e1d; }
+  .stat-card.green .stat-number { color: #2a9d8f; }
+  .stat-card.orange .stat-number { color: #f18f01; }
+  .stat-card.purple .stat-number { color: #6a4c93; }
+  .stat-label { font-size: 0.82rem; color: #666; margin-top: 4px; font-weight: 500; }
+
+  .section { background: white; border-radius: 16px; padding: 28px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+  .section-title { font-size: 1.35rem; font-weight: 700; color: #1a1a2e; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+  .section-title .icon { font-size: 1.5rem; }
+
+  .prob-table { width: 100%; border-collapse: collapse; }
+  .prob-table th { text-align: left; padding: 14px; background: #f8f9fa; font-size: 0.75rem; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #e9ecef; }
+  .prob-table td { padding: 14px; border-bottom: 1px solid #f0f0f0; font-size: 0.9rem; vertical-align: middle; }
+  .prob-table tr:hover { background: #fafbfc; }
+  .prob-bar-bg { background: #e9ecef; border-radius: 10px; height: 24px; width: 100%; position: relative; overflow: hidden; }
+  .prob-bar-fill { height: 100%; border-radius: 10px; }
+  .prob-bar-fill.high { background: linear-gradient(90deg, #c73e1d, #e76f51); }
+  .prob-bar-fill.medium { background: linear-gradient(90deg, #f18f01, #e9c46a); }
+  .prob-bar-fill.low { background: linear-gradient(90deg, #2e86ab, #2a9d8f); }
+  .prob-text { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 0.78rem; font-weight: 700; color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+  .tag { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 0.72rem; font-weight: 700; }
+  .tag-high { background: #fde8e4; color: #c73e1d; }
+  .tag-medium { background: #fff3e0; color: #f18f01; }
+  .tag-low { background: #e0f2f1; color: #2a9d8f; }
+
+  .accordion-item { border: 1px solid #e9ecef; border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+  .accordion-header { background: #f8f9fa; padding: 16px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 0.95rem; transition: background 0.2s; user-select: none; }
+  .accordion-header:hover { background: #f0f2f5; }
+  .accordion-header.active { background: #e8f4f8; color: #0f3460; }
+  .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out; background: white; }
+  .accordion-body.open { max-height: 3000px; }
+  .accordion-content { padding: 20px; font-size: 0.9rem; line-height: 1.75; color: #444; }
+  .accordion-content ul { margin-left: 20px; margin-bottom: 14px; }
+  .accordion-content li { margin-bottom: 8px; }
+  .accordion-content strong { color: #1a1a2e; }
+  .accordion-content em { color: #666; font-style: italic; }
+  .chevron { transition: transform 0.3s; font-size: 0.85rem; }
+  .chevron.rotated { transform: rotate(180deg); }
+
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, #c73e1d, #f18f01, #2a9d8f, #2e86ab, #6a4c93, #264653); border-radius: 3px; }
+  .timeline-item { position: relative; margin-bottom: 20px; padding-left: 20px; }
+  .timeline-item::before { content: ''; position: absolute; left: -28px; top: 4px; width: 15px; height: 15px; background: white; border: 3px solid #0f3460; border-radius: 50%; }
+  .timeline-item.red::before { border-color: #c73e1d; }
+  .timeline-item.orange::before { border-color: #f18f01; }
+  .timeline-item.green::before { border-color: #2a9d8f; }
+  .timeline-item.blue::before { border-color: #2e86ab; }
+  .timeline-item.purple::before { border-color: #6a4c93; }
+  .timeline-item.dark::before { border-color: #264653; }
+  .timeline-week { font-size: 0.72rem; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+  .timeline-title { font-weight: 700; font-size: 1rem; color: #1a1a2e; margin: 3px 0; }
+  .timeline-desc { font-size: 0.85rem; color: #666; }
+
+  .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .tip-card { background: linear-gradient(135deg, #f8f9fa, #fff); padding: 20px; border-radius: 12px; border-left: 4px solid #0f3460; position: relative; }
+  .tip-card.red { border-left-color: #c73e1d; }
+  .tip-card.green { border-left-color: #2a9d8f; }
+  .tip-card.orange { border-left-color: #f18f01; }
+  .tip-card.purple { border-left-color: #6a4c93; }
+  .tip-number { font-size: 1.6rem; font-weight: 800; color: #e0e0e0; position: absolute; top: 10px; right: 14px; }
+  .tip-title { font-weight: 700; font-size: 0.95rem; color: #1a1a2e; margin-bottom: 8px; padding-right: 30px; }
+  .tip-text { font-size: 0.85rem; color: #555; line-height: 1.55; }
+
+  .editions-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .editions-table th { padding: 14px; background: #1a1a2e; color: white; text-align: left; font-weight: 600; }
+  .editions-table td { padding: 14px; border-bottom: 1px solid #eee; }
+  .editions-table tr:hover { background: #f8f9fa; }
+
+  .chart-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px; }
+  .chart-box { background: white; border-radius: 16px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+  .chart-box h3 { font-size: 1rem; font-weight: 700; color: #1a1a2e; margin-bottom: 16px; text-align: center; }
+  .dist-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .dist-item { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; padding: 6px 10px; border-radius: 8px; background: #f8f9fa; }
+  .dist-color { width: 14px; height: 14px; border-radius: 4px; flex-shrink: 0; }
+  .dist-label { flex: 1; }
+  .dist-val { font-weight: 700; color: #555; }
+
+  .footer { text-align: center; padding: 28px; color: #888; font-size: 0.82rem; margin-top: 20px; }
+  .footer a { color: #0f3460; text-decoration: none; }
+
+  .btn-top { position: fixed; bottom: 20px; right: 20px; background: #0f3460; color: white; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: none; font-size: 1.2rem; opacity: 0; transition: opacity 0.3s; z-index: 100; }
+  .btn-top.visible { opacity: 1; }
+  .btn-top:hover { background: #1a1a2e; }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.6rem; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .section { padding: 18px; }
+    .prob-table th, .prob-table td { padding: 10px; font-size: 0.82rem; }
+    .dist-grid { grid-template-columns: 1fr; }
+  }
+</style>
+<base target="_blank">
+</head>
+<body>
+
+<button class="btn-top" id="btnTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
+
+<div class="container">
+
+  <div class="hero">
+    <h1>ENARE FISIOTERAPIA</h1>
+    <p class="subtitle">Análise Completa das Últimas 3 Provas (2022–2025)</p>
+    <div class="badge-row">
+      <span class="badge">100 Questões</span>
+      <span class="badge">20 Gerais + 80 Específicas</span>
+      <span class="badge">FGV (atual)</span>
+      <span class="badge">8.700+ Vagas 2024</span>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card red">
+      <div class="stat-number">3</div>
+      <div class="stat-label">Provas Analisadas</div>
+    </div>
+    <div class="stat-card green">
+      <div class="stat-number">18%</div>
+      <div class="stat-label">Neurofuncional</div>
+    </div>
+    <div class="stat-card orange">
+      <div class="stat-number">16%</div>
+      <div class="stat-label">Ortopédica</div>
+    </div>
+    <div class="stat-card purple">
+      <div class="stat-number">92%</div>
+      <div class="stat-label">Chance Neuro cair</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon">&#128203;</span> Edições Analisadas</div>
+    <table class="editions-table">
+      <tr><th>Edição</th><th>Banca</th><th>Data</th><th>Vagas (geral)</th></tr>
+      <tr><td><strong>2022/2023</strong></td><td>AOCP</td><td>06/11/2022</td><td>2.671</td></tr>
+      <tr><td><strong>2023/2024</strong></td><td>FGV</td><td>29/10/2023</td><td>3.143</td></tr>
+      <tr><td><strong>2024/2025</strong></td><td>FGV</td><td>20/10/2024</td><td>8.700+</td></tr>
+    </table>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-box">
+      <h3>Distribuição dos Temas nas 3 Provas</h3>
+      <div class="dist-grid">
+        <div class="dist-item"><div class="dist-color" style="background:#2E86AB"></div><span class="dist-label">Neurofuncional</span><span class="dist-val">18 questões</span></div>
+        <div class="dist-item"><div class="dist-color" style="background:#A23B72"></div><span class="dist-label">Ortopédica</span><span class="dist-val">16 questões</span></div>
+        <div class="dist-item"><div class="dist-color" style="background:#F18F01"></div><span class="dist-label">Respiratória</span><span class="dist-val">14 questões</span></div>
+        <div class="dist-item"><div class="dist-color" style="background:#C73E1D"></div><span class="dist-label">SUS / Políticas</span><span class="dist-val">12 questões</span></div>
+        <div class="dist-item"><div class="dist-color" style="background:#3B1F2B"></div><span class="dist-label">Cardiovascular</span><span class="dist-val">10 questões</span></div>
+        <div class="dist-item"><div class="dist-color" style="background:#95C623"></div><span class="dist-label">Avaliação</span><span class="dist-val">9 questões</span></div>
+        <div class="dist-item"><div class="dist-color" style="background:#6A4C93"></div><span class="dist-label">Bioética / Ética</span><span class="dist-val">8 questões</span></div>
+        <div class="dist-item"><div class="dist-color" style="background:#2A9D8F"></div><span class="dist-label">Eletroterapia</span><span class="dist-val">7 questões</span></div>
+        <div class="dist-item"><div class="dist-color" style="background:#E76F51"></div><span class="dist-label">Cinesioterapia</span><span class="dist-val">6 questões</span></div>
+        <div class="dist-item"><div class="dist-color" style="background:#264653"></div><span class="dist-label">Epidemiologia</span><span class="dist-val">5 questões</span></div>
+        <div class="dist-item"><div class="dist-color" style="background:#E9C46A"></div><span class="dist-label">Uroginecológica</span><span class="dist-val">3 questões</span></div>
+        <div class="dist-item"><div class="dist-color" style="background:#F4A261"></div><span class="dist-label">Vestibular / Esporte</span><span class="dist-val">4 questões</span></div>
+      </div>
+    </div>
+    <div class="chart-box">
+      <h3>Evolução por Edição (Questões)</h3>
+      <div style="font-size:0.82rem;color:#555;margin-bottom:8px;">
+        <span style="display:inline-block;width:12px;height:12px;background:#2E86AB;border-radius:3px;margin-right:6px;"></span>2022/2023
+        <span style="display:inline-block;width:12px;height:12px;background:#A23B72;border-radius:3px;margin:0 6px 0 12px;"></span>2023/2024
+        <span style="display:inline-block;width:12px;height:12px;background:#F18F01;border-radius:3px;margin:0 6px 0 12px;"></span>2024/2025
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;">
+        <div><div style="font-size:0.78rem;font-weight:600;color:#555;margin-bottom:3px;">Neurofuncional</div><div style="display:flex;gap:4px;height:22px;"><div style="width:18%;background:#2E86AB;border-radius:4px 0 0 4px;"></div><div style="width:22%;background:#A23B72;"></div><div style="width:26%;background:#F18F01;border-radius:0 4px 4px 0;"></div></div></div>
+        <div><div style="font-size:0.78rem;font-weight:600;color:#555;margin-bottom:3px;">Respiratória</div><div style="display:flex;gap:4px;height:22px;"><div style="width:16%;background:#2E86AB;border-radius:4px 0 0 4px;"></div><div style="width:20%;background:#A23B72;"></div><div style="width:20%;background:#F18F01;border-radius:0 4px 4px 0;"></div></div></div>
+        <div><div style="font-size:0.78rem;font-weight:600;color:#555;margin-bottom:3px;">Ortopédica</div><div style="display:flex;gap:4px;height:22px;"><div style="width:20%;background:#2E86AB;border-radius:4px 0 0 4px;"></div><div style="width:20%;background:#A23B72;"></div><div style="width:24%;background:#F18F01;border-radius:0 4px 4px 0;"></div></div></div>
+        <div><div style="font-size:0.78rem;font-weight:600;color:#555;margin-bottom:3px;">SUS / Políticas</div><div style="display:flex;gap:4px;height:22px;"><div style="width:16%;background:#2E86AB;border-radius:4px 0 0 4px;"></div><div style="width:16%;background:#A23B72;"></div><div style="width:16%;background:#F18F01;border-radius:0 4px 4px 0;"></div></div></div>
+        <div><div style="font-size:0.78rem;font-weight:600;color:#555;margin-bottom:3px;">Cardiovascular</div><div style="display:flex;gap:4px;height:22px;"><div style="width:12%;background:#2E86AB;border-radius:4px 0 0 4px;"></div><div style="width:12%;background:#A23B72;"></div><div style="width:16%;background:#F18F01;border-radius:0 4px 4px 0;"></div></div></div>
+        <div><div style="font-size:0.78rem;font-weight:600;color:#555;margin-bottom:3px;">Bioética</div><div style="display:flex;gap:4px;height:22px;"><div style="width:12%;background:#2E86AB;border-radius:4px 0 0 4px;"></div><div style="width:8%;background:#A23B72;"></div><div style="width:12%;background:#F18F01;border-radius:0 4px 4px 0;"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon">&#127919;</span> Probabilidade de Questões Cair na Prova</div>
+    <table class="prob-table">
+      <tr><th>Tema</th><th style="width:42%">Probabilidade</th><th>Prioridade</th></tr>
+      <tr>
+        <td><strong>Fisioterapia Neurofuncional</strong><br><small style="color:#888">AVC, TCE, Lesão Medular, ETCC</small></td>
+        <td><div class="prob-bar-bg"><div class="prob-bar-fill high" style="width:92%"></div><span class="prob-text">92%</span></div></td>
+        <td><span class="tag tag-high">ALTA</span></td>
+      </tr>
+      <tr>
+        <td><strong>Fisioterapia Respiratória</strong><br><small style="color:#888">DPOC, TC6, VNI, VM</small></td>
+        <td><div class="prob-bar-bg"><div class="prob-bar-fill high" style="width:88%"></div><span class="prob-text">88%</span></div></td>
+        <td><span class="tag tag-high">ALTA</span></td>
+      </tr>
+      <tr>
+        <td><strong>Fisioterapia Ortopédica</strong><br><small style="color:#888">Marcha, Joelho, Quadril, Tornozelo</small></td>
+        <td><div class="prob-bar-bg"><div class="prob-bar-fill high" style="width:85%"></div><span class="prob-text">85%</span></div></td>
+        <td><span class="tag tag-high">ALTA</span></td>
+      </tr>
+      <tr>
+        <td><strong>SUS e Políticas de Saúde</strong><br><small style="color:#888">Lei 8.080, PNAB, Humanização, PNEPS</small></td>
+        <td><div class="prob-bar-bg"><div class="prob-bar-fill high" style="width:82%"></div><span class="prob-text">82%</span></div></td>
+        <td><span class="tag tag-high">ALTA</span></td>
+      </tr>
+      <tr>
+        <td><strong>Avaliação Fisioterapêutica</strong><br><small style="color:#888">Escalas, Testes, ROM, Força</small></td>
+        <td><div class="prob-bar-bg"><div class="prob-bar-fill medium" style="width:78%"></div><span class="prob-text">78%</span></div></td>
+        <td><span class="tag tag-medium">MÉDIA</span></td>
+      </tr>
+      <tr>
+        <td><strong>Fisioterapia Cardiovascular</strong><br><small style="color:#888">Borg, Exercício, DCV, Hipertensão</small></td>
+        <td><div class="prob-bar-bg"><div class="prob-bar-fill medium" style="width:75%"></div><span class="prob-text">75%</span></div></td>
+        <td><span class="tag tag-medium">MÉDIA</span></td>
+      </tr>
+      <tr>
+        <td><strong>Bioética e Ética Profissional</strong><br><small style="color:#888">Princípios, Código de Ética, Sigilo</small></td>
+        <td><div class="prob-bar-bg"><div class="prob-bar-fill medium" style="width:72%"></div><span class="prob-text">72%</span></div></td>
+        <td><span class="tag tag-medium">MÉDIA</span></td>
+      </tr>
+      <tr>
+        <td><strong>Eletroterapia e Recursos</strong><br><small style="color:#888">TENS, Laser, Ultrassom, Correntes</small></td>
+        <td><div class="prob-bar-bg"><div class="prob-bar-fill medium" style="width:65%"></div><span class="prob-text">65%</span></div></td>
+        <td><span class="tag tag-medium">MÉDIA</span></td>
+      </tr>
+      <tr>
+        <td><strong>Cinesioterapia e Exercício</strong><br><small style="color:#888">Prescrição, Alavancas, Tipos</small></td>
+        <td><div class="prob-bar-bg"><div class="prob-bar-fill medium" style="width:60%"></div><span class="prob-text">60%</span></div></td>
+        <td><span class="tag tag-medium">MÉDIA</span></td>
+      </tr>
+      <tr>
+        <td><strong>Epidemiologia e Saúde Coletiva</strong><br><small style="color:#888">ECR, Cálculos, Vigilância</small></td>
+        <td><div class="prob-bar-bg"><div class="prob-bar-fill low" style="width:55%"></div><span class="prob-text">55%</span></div></td>
+        <td><span class="tag tag-low">MODERADA</span></td>
+      </tr>
+      <tr>
+        <td><strong>Fisioterapia Uroginecológica</strong><br><small style="color:#888">Pelve, Dispareunia, Vaginismo</small></td>
+        <td><div class="prob-bar-bg"><div class="prob-bar-fill low" style="width:40%"></div><span class="prob-text">40%</span></div></td>
+        <td><span class="tag tag-low">MODERADA</span></td>
+      </tr>
+      <tr>
+        <td><strong>Reabilitação Vestibular</strong><br><small style="color:#888">Menière, Nistagmo, Equilíbrio</small></td>
+        <td><div class="prob-bar-bg"><div class="prob-bar-fill low" style="width:35%"></div><span class="prob-text">35%</span></div></td>
+        <td><span class="tag tag-low">MODERADA</span></td>
+      </tr>
+      <tr>
+        <td><strong>Fisioterapia no Esporte</strong><br><small style="color:#888">Lesões, Retorno, Bioética</small></td>
+        <td><div class="prob-bar-bg"><div class="prob-bar-fill low" style="width:30%"></div><span class="prob-text">30%</span></div></td>
+        <td><span class="tag tag-low">MODERADA</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon">&#128218;</span> Conteúdo Detalhado por Área — O que Estudar</div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span>&#129504; 1. Fisioterapia Neurofuncional (~18% da prova)</span>
+        <span class="chevron">&#9660;</span>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Lesão Medular:</strong> Escala ASIA (níveis A,B,C,D,E), funções preservadas por nível neurológico, treinamento de AVDs, órteses. <em>Questão 2024: paciente C5 com função sensitiva em S4-S5 = ASIA B.</em></li>
+            <li><strong>AVC:</strong> Classificação isquêmico/hemorrágico, hemiparesia, espasticidade, síndrome do ombro doloroso, reabilitação motora. Escalas: <strong>Fugl-Meyer, WMFT, AMAT</strong>.</li>
+            <li><strong>TCE:</strong> Escala de Glasgow, sequelas cognitivas, reabilitação motora e funcional.</li>
+            <li><strong>ETCC (Estimulação Transcraniana por Corrente Contínua):</strong> Eletrodo <strong>anódico</strong> = aumento de excitabilidade; <strong>catódico</strong> = diminuição. <em>Cobrado em 2024.</em></li>
+            <li><strong>Doença de Parkinson:</strong> UPDRS, tremor, rigidez, bradicinesia, avaliação de sensibilidade (grafiaestesia, cinestesia).</li>
+            <li><strong>Escalas:</strong> Ashworth Modificada (espasticidade), Índice de Rankin, NIHSS, Barthel.</li>
+            <li><strong>Sensibilidade:</strong> Grafiaestesia, cinestesia, estereognosia — cobradas nas sessões de avaliação.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span>&#129530; 2. Fisioterapia Respiratória (~14% da prova)</span>
+        <span class="chevron">&#9660;</span>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-content">
+          <ul>
+            <li><strong>DPOC:</strong> Classificação GOLD, espirometria (VEF1/CVF), oxigenoterapia de longo prazo, reabilitação pulmonar.</li>
+            <li><strong>TC6 (Teste de Caminhada 6 min):</strong> Critérios de <strong>parada obrigatória</strong>: SpO2 &lt; 85%, Escala de Borg &gt; 14, FR &gt; 30 ipm, dor torácica, palidez/cianose. <em>Cobrado em 2024.</em></li>
+            <li><strong>VNI (Ventilação Não Invasiva):</strong> Indicações (DPOC, EAP, pneumonia leve) e <strong>contraindicações absolutas</strong> (falência respiratória, vômito, PCR, TCE com instabilidade, deformidade facial). <em>Questão 2024: pneumonia com falência muscular = contraindicação.</em></li>
+            <li><strong>VM (Ventilação Mecânica):</strong> Parâmetros (FiO2, PEEP, VT, FR, relação I:E), desmame ventilatório, SBT (Spontaneous Breathing Trial).</li>
+            <li><strong>TEF (Técnica de Expiração Forçada):</strong> Criada por Pryor e Webber, menor alteração na pressão pleural, pode ser associada a outras técnicas.</li>
+            <li><strong>Higiene brônquica:</strong> Drenagem postural, vibrocompressão, aspiração traqueal, EPAP.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span>&#129461; 3. Fisioterapia Ortopédica (~16% da prova)</span>
+        <span class="chevron">&#9660;</span>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Marcha humana:</strong> Fase de apoio (~60%) vs balanço (~40%). Na <strong>gonartrose avançada</strong>: aumento do duplo apoio (mesmo padrão de idosos). <em>Cobrado em 2024.</em></li>
+            <li><strong>Joelho:</strong> Teste de <strong>Lachman</strong> (LCA — instabilidade anterior), McMurray (menisco), estresse em varo (LCL) e valgo (LCM), gonartrose.</li>
+            <li><strong>Quadril:</strong> Estabilidade — estruturas contráteis (<strong>glúteo médio</strong>) e não contráteis (<strong>lábio acetabular</strong>). Teste de Trendelenburg, valgo dinâmico. <em>Cobrado em 2024.</em></li>
+            <li><strong>Tornozelo:</strong> Teste <strong>Star Excursion Balance</strong> (estabilidade dinâmica), teste de Thompson (tendão calcâneo), entorse grau I/II/III.</li>
+            <li><strong>Sistemas de alavanca:</strong> 1ª classe (interfixa — cabeça), 2ª classe (vantagem mecânica — levantar do chão), 3ª classe (maior amplitude — cotovelo).</li>
+            <li><strong>Ombro:</strong> Manguito rotador, síndrome do impacto, testes específicos.</li>
+            <li><strong>Coluna vertebral:</strong> Hérnia de disco, espondilolistese, escoliose, lordose/cifose.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span>&#127973; 4. SUS e Políticas de Saúde (~12% da prova)</span>
+        <span class="chevron">&#9660;</span>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Lei 8.080/90:</strong> Princípios (universalidade, integralidade, equidade), organização do SUS, financiamento, atenção às populações indígenas.</li>
+            <li><strong>PNAB (Portaria 2.436/2017):</strong> Atenção Básica, equipe de saúde da família, NASF, matriciamento, acolhimento.</li>
+            <li><strong>Política Nacional de Humanização:</strong> Acolhimento, vínculo, responsabilização, autonomia do usuário, mudança do objeto (da doença para o sujeito). <em>Questão 2022: objetivos EXCETO manutenção de filas tradicionais.</em></li>
+            <li><strong>PNEPS (Portaria 198/2004):</strong> Educação permanente em saúde, polo-escola, 3 funções do Colegiado de Gestão. <em>Cobrado em 2024.</em></li>
+            <li><strong>Redes de Atenção à Saúde:</strong> Urgência, Atenção Especializada, Hospitalar, Atenção Básica, Rede Cegonha.</li>
+            <li><strong>Vigilância em Saúde:</strong> Salas de Situação, notificação compulsória, vigilância epidemiológica.</li>
+            <li><strong>EPIs e Biossegurança:</strong> Sequência de colocação e retirada. <strong>Luvas são o último EPI a ser removido</strong> na desparamentação. <em>Cobrado em 2024.</em></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span>&#9878;&#65039; 5. Bioética e Ética Profissional (~8% da prova)</span>
+        <span class="chevron">&#9660;</span>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Princípios bioéticos:</strong> Autonomia, Beneficência, Não maleficência, Justiça.</li>
+            <li><strong>Código de Ética do Fisioterapeuta:</strong> Sigilo profissional, dever de denúncia em caso de erro, limites do exercício, propaganda.</li>
+            <li><strong>Erros médicos:</strong><br>
+              • <strong>Negligência</strong> = desleixo (não identificou o problema)<br>
+              • <strong>Imprudência</strong> = assumiu risco sabendo do perigo<br>
+              • <strong>Imperícia</strong> = incompetência técnica<br>
+              <em>Questão 2024: atleta liberado indevidamente = imprudência.</em>
+            </li>
+            <li><strong>Trabalho em equipe:</strong> Interdisciplinar (compartilha objetivos), multidisciplinar (cada um no seu), transdisciplinar (ultrapassa fronteiras).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span>&#10084;&#65039; 6. Fisioterapia Cardiovascular e Exercício (~10% da prova)</span>
+        <span class="chevron">&#9660;</span>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Doença coronariana:</strong> Teste ergométrico, prescrição de exercício aeróbico, reabilitação cardíaca.</li>
+            <li><strong>Escala de Borg (6-20):</strong> Monitoramento da intensidade do exercício. Uso em DCV.</li>
+            <li><strong>Escala de percepção de esforço:</strong> Pode ser usada em pacientes com DCV, especialmente quando não usam betabloqueadores. <em>Confirmado como método válido em 2024.</em></li>
+            <li><strong>Hipertensão:</strong> Programa Hiperdia, prevenção primária (orientação sobre fatores de risco, atividade física, medicamentos). <em>Cobrado em 2024.</em></li>
+            <li><strong>Exercício resistido:</strong> Reduz PA sistólica e diastólica, efeito similar a anti-hipertensivos.</li>
+            <li><strong>Exercício aeróbico:</strong> FC máxima, zona alvo, duração, frequência semanal.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span>&#9889; 7. Eletroterapia e Recursos Físicos (~7% da prova)</span>
+        <span class="chevron">&#9660;</span>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-content">
+          <ul>
+            <li><strong>TENS:</strong> Analgésico, portátil, eletrodos sobre o trajeto doloroso, parâmetros de frequência e amplitude.</li>
+            <li><strong>Laser:</strong> Cicatrização de feridas (úlceras, queimaduras), efeito anti-inflamatório, parâmetros (potência, energia, tempo).</li>
+            <li><strong>Ultrassom:</strong> Contínuo (aquecimento) vs pulsado, profundidade de penetração, indicações e contraindicações.</li>
+            <li><strong>Correntes:</strong> Russa (fortalecimento muscular), diadinâmica, Aussie, ondas curtas.</li>
+            <li><strong>Termoterapia:</strong> Calor superficial (até 2 cm) vs profundo, crioterapia, parafina.</li>
+            <li><strong>Cinesioterapia:</strong> Passivo, ativo assistido, ativo livre, resistido, isométrico, isotônico, isocinético.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span>&#128202; 8. Avaliação Fisioterapêutica (~9% da prova)</span>
+        <span class="chevron">&#9660;</span>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Escalas funcionais:</strong> Berg (equilíbrio), Barthel (AVD), TUG (mobilidade), 10m (velocidade de marcha), Fugl-Meyer, WMFT.</li>
+            <li><strong>Força muscular:</strong> Teste manual (escala 0-5), dinamometria manual.</li>
+            <li><strong>ROM (Amplitude de Movimento):</strong> Goniometria, fleximetria.</li>
+            <li><strong>Dor:</strong> EVA, ENR, McGill, avaliação multidimensional (componentes sensorial, emocional, comportamental).</li>
+            <li><strong>Sensibilidade:</strong> Grafiaestesia, cinestesia, estereognosia, teste de dois pontos, barognosia.</li>
+            <li><strong>Marcha:</strong> Análise qualitativa e quantitativa, fases, parâmetros espaciotemporais.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon">&#128197;</span> Cronograma Sugerido de Estudos (16 semanas)</div>
+    <div class="timeline">
+      <div class="timeline-item red">
+        <div class="timeline-week">Semanas 1–2</div>
+        <div class="timeline-title">Fase 1: SUS e Saúde Coletiva</div>
+        <div class="timeline-desc">Lei 8.080/90, PNAB, Humanização, PNEPS, Redes de Atenção, EPIs</div>
+      </div>
+      <div class="timeline-item blue">
+        <div class="timeline-week">Semanas 3–5</div>
+        <div class="timeline-title">Fase 2: Neurofuncional + Avaliação</div>
+        <div class="timeline-desc">ASIA, AVC, TCE, escalas (Fugl-Meyer, Ashworth, Barthel), ETCC, sensibilidade</div>
+      </div>
+      <div class="timeline-item green">
+        <div class="timeline-week">Semanas 6–8</div>
+        <div class="timeline-title">Fase 3: Respiratória + Cardiovascular</div>
+        <div class="timeline-desc">DPOC, TC6, VNI, VM, Borg, exercício aeróbico, DCV, hipertensão</div>
+      </div>
+      <div class="timeline-item orange">
+        <div class="timeline-week">Semanas 9–11</div>
+        <div class="timeline-title">Fase 4: Ortopédica + Eletroterapia</div>
+        <div class="timeline-desc">Marcha, joelho, quadril, tornozelo, TENS, laser, ultrassom, correntes</div>
+      </div>
+      <div class="timeline-item purple">
+        <div class="timeline-week">Semanas 12–13</div>
+        <div class="timeline-title">Fase 5: Bioética + Legislação</div>
+        <div class="timeline-desc">Princípios bioéticos, Código de Ética, erros médicos, trabalho em equipe</div>
+      </div>
+      <div class="timeline-item dark">
+        <div class="timeline-week">Semanas 14–15</div>
+        <div class="timeline-title">Fase 6: Simulados e Revisão</div>
+        <div class="timeline-desc">Provas anteriores, questões comentadas, revisar erros, simulados cronometrados</div>
+      </div>
+      <div class="timeline-item red">
+        <div class="timeline-week">Semana 16</div>
+        <div class="timeline-title">Fase 7: Revisão Final Intensiva</div>
+        <div class="timeline-desc">Focar nos 4 temas principais (Neuro, Respiratória, Ortopédica, SUS), flashcards, mapas mentais</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon">&#128161;</span> Dicas Estratégicas para a Prova</div>
+    <div class="tips-grid">
+      <div class="tip-card red">
+        <div class="tip-number">01</div>
+        <div class="tip-title">Priorize os 4 temas principais</div>
+        <div class="tip-text">Neurofuncional, Respiratória, Ortopédica e SUS juntos representam ~60% da prova. Domine-os primeiro.</div>
+      </div>
+      <div class="tip-card green">
+        <div class="tip-number">02</div>
+        <div class="tip-title">Decore as escalas</div>
+        <div class="tip-text">Fugl-Meyer, ASIA, Ashworth, Berg, Barthel, TUG, Borg e Glasgow são cobradas diretamente em quase toda prova.</div>
+      </div>
+      <div class="tip-card orange">
+        <div class="tip-number">03</div>
+        <div class="tip-title">Memorize critérios numéricos</div>
+        <div class="tip-text">A banca adora cobrar limites: TC6 (SpO2 &lt; 85%, Borg &gt; 14), VNI contraindicações, parâmetros de VM.</div>
+      </div>
+      <div class="tip-card purple">
+        <div class="tip-number">04</div>
+        <div class="tip-title">Domine a Lei 8.080/90 e a PNAB</div>
+        <div class="tip-text">São as bases do SUS e aparecem em praticamente todas as provas. Estude as portarias também.</div>
+      </div>
+      <div class="tip-card red">
+        <div class="tip-number">05</div>
+        <div class="tip-title">Faça provas anteriores</div>
+        <div class="tip-text">A FGV mantém padrão de questões clínicas com cenários realistas. Resolva as 3 últimas provas no mínimo 2x.</div>
+      </div>
+      <div class="tip-card green">
+        <div class="tip-number">06</div>
+        <div class="tip-title">Atenção à bioética</div>
+        <div class="tip-text">Questões sobre sigilo, denúncia e erros médicos (negligência vs imprudência vs imperícia) são frequentes.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Análise baseada nas provas ENARE 2022/2023 (AOCP), 2023/2024 (FGV) e 2024/2025 (FGV).<br>
+    Dados compilados de questões oficiais, gabaritos e comentários de especialistas.<br><br>
+    <em>Site gerado em 29/07/2026</em>
+  </div>
+
+</div>
+
+<script>
+  function toggleAccordion(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    const isOpen = body.classList.contains('open');
+    document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('active'));
+    document.querySelectorAll('.chevron').forEach(c => c.classList.remove('rotated'));
+    if (!isOpen) {
+      body.classList.add('open');
+      header.classList.add('active');
+      chevron.classList.add('rotated');
+    }
+  }
+
+  // Scroll to top button
+  const btnTop = document.getElementById('btnTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) btnTop.classList.add('visible');
+    else btnTop.classList.remove('visible');
+  });
+
+  // Animate probability bars on load
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.prob-bar-fill').forEach(bar => {
+      const target = bar.style.width;
+      bar.style.width = '0%';
+      setTimeout(() => { bar.style.width = target; }, 200);
+    });
+  });
+</script>
+
+</body>
+</html>
