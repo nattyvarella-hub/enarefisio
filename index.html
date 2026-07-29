@@ -111,6 +111,123 @@
     .prob-table th, .prob-table td { padding: 10px; font-size: 0.82rem; }
     .dist-grid { grid-template-columns: 1fr; }
   }
+
+  /* QUIZ / FLASHCARD STYLES */
+  .quiz-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  .filter-btn { padding: 8px 16px; border: 1px solid #e0e0e0; border-radius: 20px; background: white; font-size: 0.82rem; font-weight: 600; color: #555; cursor: pointer; transition: all 0.2s; }
+  .filter-btn:hover { background: #f0f2f5; border-color: #0f3460; color: #0f3460; }
+  .filter-btn.active { background: #0f3460; color: white; border-color: #0f3460; }
+
+  .quiz-stats { display: flex; gap: 16px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; }
+  .quiz-stat { font-size: 0.9rem; font-weight: 600; color: #555; }
+  .quiz-stat.green { color: #2a9d8f; }
+  .quiz-stat.red { color: #c73e1d; }
+  .btn-reset { padding: 6px 14px; border: 1px solid #ddd; border-radius: 8px; background: white; font-size: 0.8rem; cursor: pointer; color: #555; }
+  .btn-reset:hover { background: #f0f2f5; }
+
+  .flashcard-container { perspective: 1200px; margin-bottom: 20px; }
+  .flashcard {
+    width: 100%; min-height: 380px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
+  .flashcard.flipped { transform: rotateY(180deg); }
+  .flashcard-front, .flashcard-back {
+    position: absolute; top: 0; left: 0; width: 100%; min-height: 380px;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  .flashcard-front {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border: 2px solid #e9ecef;
+    display: flex; flex-direction: column;
+  }
+  .flashcard-back {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    transform: rotateY(180deg);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .card-tag {
+    display: inline-block; align-self: flex-start;
+    padding: 4px 14px; border-radius: 12px;
+    font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: 14px;
+  }
+  .card-tag.neuro { background: #e3f2fd; color: #1565c0; }
+  .card-tag.resp { background: #e8f5e9; color: #2e7d32; }
+  .card-tag.orto { background: #fff3e0; color: #ef6c00; }
+  .card-tag.sus { background: #fce4ec; color: #c62828; }
+  .card-tag.cardio { background: #f3e5f5; color: #6a1b9a; }
+  .card-tag.bioetica { background: #e0f2f1; color: #00695c; }
+  .card-tag.eletro { background: #e8eaf6; color: #283593; }
+  .card-enunciado { font-size: 1.05rem; font-weight: 600; color: #1a1a2e; line-height: 1.6; margin-bottom: 16px; flex: 1; }
+  .card-alternativas { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+  .card-alt {
+    padding: 10px 14px; border-radius: 10px; background: #f8f9fa;
+    font-size: 0.9rem; color: #444; border: 1px solid #eee;
+    transition: background 0.2s;
+  }
+  .card-alt:hover { background: #e3f2fd; border-color: #90caf9; }
+  .card-alt.correct { background: #e8f5e9; border-color: #81c784; color: #2e7d32; font-weight: 600; }
+  .card-hint {
+    text-align: center; font-size: 0.78rem; color: #999;
+    padding-top: 10px; border-top: 1px dashed #ddd;
+  }
+  .card-resposta {
+    font-size: 1.3rem; font-weight: 800; margin-bottom: 16px;
+    text-align: center; padding: 12px; border-radius: 12px;
+    background: rgba(255,255,255,0.1);
+  }
+  .card-resposta.correct-ans { background: rgba(46, 157, 143, 0.3); }
+  .card-resposta.wrong-ans { background: rgba(199, 62, 29, 0.3); }
+  .card-explicacao { font-size: 0.92rem; line-height: 1.7; opacity: 0.95; margin-bottom: 14px; }
+  .card-fonte { font-size: 0.78rem; opacity: 0.6; font-style: italic; text-align: right; }
+
+  .quiz-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 12px; flex-wrap: wrap;
+  }
+  .btn-nav {
+    padding: 12px 24px; border: none; border-radius: 10px;
+    background: #0f3460; color: white; font-size: 0.9rem; font-weight: 600;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .btn-nav:hover { background: #1a1a2e; }
+  .btn-nav:disabled { background: #ccc; cursor: not-allowed; }
+  .quiz-actions { display: flex; gap: 10px; }
+  .btn-action {
+    padding: 12px 28px; border: none; border-radius: 10px;
+    font-size: 0.9rem; font-weight: 700; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-action:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+  .btn-correct { background: #2a9d8f; color: white; }
+  .btn-wrong { background: #c73e1d; color: white; }
+  .btn-action.answered { opacity: 0.5; pointer-events: none; }
+
+  .quiz-progress {
+    width: 100%; height: 6px; background: #e9ecef; border-radius: 3px;
+    margin-top: 20px; overflow: hidden;
+  }
+  .quiz-progress-bar {
+    height: 100%; background: linear-gradient(90deg, #0f3460, #2a9d8f);
+    border-radius: 3px; transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  @media (max-width: 600px) {
+    .flashcard { min-height: 450px; }
+    .flashcard-front, .flashcard-back { min-height: 450px; padding: 18px; }
+    .quiz-nav { flex-direction: column; }
+    .quiz-actions { width: 100%; justify-content: center; }
+    .btn-nav { width: 100%; }
+  }
+
 </style>
 <base target="_blank">
 </head>
@@ -507,6 +624,60 @@
     </div>
   </div>
 
+  
+  <div class="section" id="quiz-section">
+    <div class="section-title"><span class="icon">&#128220;</span> Treino de Questões — Modo Flashcard</div>
+    <p style="font-size:0.9rem;color:#666;margin-bottom:18px;">Questões reais das provas ENARE 2022–2025. Clique no card para revelar a resposta e a explicação.</p>
+
+    <div class="quiz-filters">
+      <button class="filter-btn active" onclick="filterQuiz('todos')">Todos</button>
+      <button class="filter-btn" onclick="filterQuiz('neuro')">Neurofuncional</button>
+      <button class="filter-btn" onclick="filterQuiz('resp')">Respiratória</button>
+      <button class="filter-btn" onclick="filterQuiz('orto')">Ortopédica</button>
+      <button class="filter-btn" onclick="filterQuiz('sus')">SUS</button>
+      <button class="filter-btn" onclick="filterQuiz('cardio')">Cardiovascular</button>
+      <button class="filter-btn" onclick="filterQuiz('bioetica')">Bioética</button>
+      <button class="filter-btn" onclick="filterQuiz('eletro')">Eletroterapia</button>
+    </div>
+
+    <div class="quiz-stats">
+      <div class="quiz-stat"><span id="q-current">1</span> / <span id="q-total">20</span></div>
+      <div class="quiz-stat green">Acertos: <span id="q-acertos">0</span></div>
+      <div class="quiz-stat red">Erros: <span id="q-erros">0</span></div>
+      <div class="quiz-stat"><button class="btn-reset" onclick="resetQuiz()">&#128260; Reiniciar</button></div>
+    </div>
+
+    <div class="flashcard-container">
+      <div class="flashcard" id="flashcard" onclick="flipCard()">
+        <div class="flashcard-front" id="card-front">
+          <div class="card-tag" id="card-tag">Neurofuncional</div>
+          <div class="card-enunciado" id="card-enunciado">Carregando...</div>
+          <div class="card-alternativas" id="card-alternativas"></div>
+          <div class="card-hint">Clique para revelar a resposta</div>
+        </div>
+        <div class="flashcard-back" id="card-back">
+          <div class="card-resposta" id="card-resposta"></div>
+          <div class="card-explicacao" id="card-explicacao"></div>
+          <div class="card-fonte" id="card-fonte"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz-nav">
+      <button class="btn-nav" onclick="prevCard()">&#9664; Anterior</button>
+      <div class="quiz-actions">
+        <button class="btn-action btn-wrong" onclick="markWrong()">&#10060; Errei</button>
+        <button class="btn-action btn-correct" onclick="markCorrect()">&#10004; Acertei</button>
+      </div>
+      <button class="btn-nav" onclick="nextCard()">Próxima &#9654;</button>
+    </div>
+
+    <div class="quiz-progress">
+      <div class="quiz-progress-bar" id="quiz-progress-bar"></div>
+    </div>
+  </div>
+
+
   <div class="footer">
     Análise baseada nas provas ENARE 2022/2023 (AOCP), 2023/2024 (FGV) e 2024/2025 (FGV).<br>
     Dados compilados de questões oficiais, gabaritos e comentários de especialistas.<br><br>
@@ -545,6 +716,328 @@
       setTimeout(() => { bar.style.width = target; }, 200);
     });
   });
+
+
+  // ===== QUESTÕES REAIS ENARE FISIOTERAPIA =====
+  const allQuestions = [
+    {
+      id: 1, tema: 'neuro', tag: 'Neurofuncional', tagClass: 'neuro',
+      enunciado: 'Um paciente com lesão medular traumática apresenta preservação da função sensitiva abaixo do nível neurológico, incluindo os segmentos sacrais S4-S5, mas sem função motora preservada abaixo do nível neurológico. Qual a classificação ASIA?',
+      alternativas: ['A) ASIA A', 'B) ASIA B', 'C) ASIA C', 'D) ASIA D', 'E) ASIA E'],
+      gabarito: 'B) ASIA B',
+      explicacao: 'ASIA B = lesão completa motora, mas com preservação sensitiva abaixo do nível neurológico, incluindo sacrais S4-S5. ASIA A = completa (sem função motora nem sensitiva). ASIA C e D têm função motora preservada abaixo do nível.',
+      fonte: 'ENARE 2024/2025 — Questão sobre Escala ASIA'
+    },
+    {
+      id: 2, tema: 'neuro', tag: 'Neurofuncional', tagClass: 'neuro',
+      enunciado: 'Um paciente com AVC isquêmico apresenta espasticidade e fraqueza no membro superior direito. Na avaliação com a Escala Fugl-Meyer, o fisioterapeuta observa dificuldade em alcançar e agarrar objetos. Qual sessão da Fugl-Meyer avalia especificamente essa função?',
+      alternativas: ['A) Sessão I — Sensibilidade', 'B) Sessão II — Membro Superior', 'C) Sessão III — Equilíbrio', 'D) Sessão IV — Membro Inferior', 'E) Sessão V — Coordenação'],
+      gabarito: 'B) Sessão II — Membro Superior',
+      explicacao: 'A Sessão II da Fugl-Meyer avalia a função do membro superior, incluindo movimentos de alcançar, agarrar e manipular objetos. A Sessão I avalia sensibilidade, a III equilíbrio, a IV membro inferior e a V coordenação.',
+      fonte: 'ENARE 2024/2025 — Questão sobre Escala Fugl-Meyer'
+    },
+    {
+      id: 3, tema: 'neuro', tag: 'Neurofuncional', tagClass: 'neuro',
+      enunciado: 'Ao aplicar a Estimulação Transcraniana por Corrente Contínua (ETCC) em um paciente com AVC, o fisioterapeuta deseja aumentar a excitabilidade cortical da área motora. Qual o posicionamento correto do eletrodo?',
+      alternativas: ['A) Eletrodo catódico sobre a área motora', 'B) Eletrodo anódico sobre a área motora', 'C) Eletrodo catódico na região occipital', 'D) Eletrodo anódico na região temporal', 'E) Ambos os eletrodos sobre a área motora'],
+      gabarito: 'B) Eletrodo anódico sobre a área motora',
+      explicacao: 'Na ETCC, o eletrodo ANÓDICO aumenta a excitabilidade neuronal (depolarização), enquanto o CATÓDICO diminui a excitabilidade (hiperpolarização). Para aumentar a excitabilidade cortical, usa-se o anódico sobre a área-alvo.',
+      fonte: 'ENARE 2024/2025 — Questão sobre ETCC'
+    },
+    {
+      id: 4, tema: 'neuro', tag: 'Neurofuncional', tagClass: 'neuro',
+      enunciado: 'Um paciente com lesão medular traumática apresenta função sensitiva preservada nos segmentos sacrais S4-S5, mas sem função motora preservada abaixo do nível neurológico C5. Qual a classificação ASIA desse paciente?',
+      alternativas: ['A) ASIA A — nível C5', 'B) ASIA B — nível C5', 'C) ASIA C — nível C5', 'D) ASIA D — nível C5', 'E) ASIA E — nível C5'],
+      gabarito: 'B) ASIA B — nível C5',
+      explicacao: 'ASIA B = lesão sensorial incompleta: há preservação da função sensitiva abaixo do nível neurológico, incluindo os segmentos sacrais S4-S5, mas sem função motora preservada abaixo do nível. O nível neurológico é C5.',
+      fonte: 'ENARE 2024/2025 — Questão sobre ASIA e nível neurológico'
+    },
+    {
+      id: 5, tema: 'resp', tag: 'Respiratória', tagClass: 'resp',
+      enunciado: 'Durante a realização do Teste de Caminhada de 6 Minutos (TC6), um paciente com DPOC apresenta os seguintes dados: SpO2 85%, Escala de Borg 14, FR 28 ipm e cansaço intenso. Qual a conduta do fisioterapeuta?',
+      alternativas: ['A) Continuar o teste até os 6 minutos', 'B) Parar o teste imediatamente', 'C) Reduzir a velocidade e continuar', 'D) Administrar oxigênio e continuar', 'E) Aplicar VNI e continuar'],
+      gabarito: 'B) Parar o teste imediatamente',
+      explicacao: 'Critérios de parada do TC6: SpO2 < 85%, Borg > 14, FR > 30 ipm, dor torácica, palidez/cianose, desmaio. O paciente apresentou SpO2 de 85% (limite) e cansaço intenso — deve-se parar o teste.',
+      fonte: 'ENARE 2024/2025 — Questão sobre TC6'
+    },
+    {
+      id: 6, tema: 'resp', tag: 'Respiratória', tagClass: 'resp',
+      enunciado: 'Uma paciente com pneumonia comunitária leve apresenta falência muscular respiratória. O médico solicita VNI (Ventilação Não Invasiva). Qual a conduta do fisioterapeuta?',
+      alternativas: ['A) Instalar a VNI imediatamente', 'B) Contraindicar a VNI e solicitar intubação', 'C) Aplicar fisioterapia respiratória convencional', 'D) Iniciar oxigenoterapia de alto fluxo', 'E) Realizar treinamento muscular respiratório'],
+      gabarito: 'B) Contraindicar a VNI e solicitar intubação',
+      explicacao: 'A falência respiratória é CONTRAINDICAÇÃO ABSOLUTA para VNI. Outras contraindicações: vômito, parada cardiorrespiratória, TCE com instabilidade, deformidade facial, obstrução de vias aéreas.',
+      fonte: 'ENARE 2024/2025 — Questão sobre VNI'
+    },
+    {
+      id: 7, tema: 'resp', tag: 'Respiratória', tagClass: 'resp',
+      enunciado: 'A Técnica de Expiração Forçada (TEF) foi criada por Pryor e Webber. Qual a principal característica desta técnica em relação à pressão pleural?',
+      alternativas: ['A) Aumenta significativamente a pressão pleural', 'B) Diminui a pressão pleural', 'C) Apresenta menor alteração na pressão pleural', 'D) Mantém a pressão pleural negativa constante', 'E) Não altera a pressão pleural'],
+      gabarito: 'C) Apresenta menor alteração na pressão pleural',
+      explicacao: 'A TEF foi desenvolvida para ser uma técnica de remoção de secreções que apresenta MENOR ALTERAÇÃO na pressão pleural, sendo mais segura para pacientes com instabilidade hemodinâmica. Pode ser associada a outras técnicas.',
+      fonte: 'ENARE 2024/2025 — Questão sobre TEF'
+    },
+    {
+      id: 8, tema: 'orto', tag: 'Ortopédica', tagClass: 'orto',
+      enunciado: 'Um paciente com gonartrose avançada apresenta alteração no padrão de marcha. Qual das seguintes características é mais comum nesta condição?',
+      alternativas: ['A) Diminuição do duplo apoio', 'B) Aumento do duplo apoio', 'C) Aumento da fase de balanço', 'D) Diminuição da cadência', 'E) Aumento da amplitude do passo'],
+      gabarito: 'B) Aumento do duplo apoio',
+      explicacao: 'Na gonartrose avançada, há aumento do duplo apoio (período em que ambos os pés estão no solo), assim como em idosos. Isso ocorre como estratégia de estabilidade e redução da carga articular.',
+      fonte: 'ENARE 2024/2025 — Questão sobre Marcha e Gonartrose'
+    },
+    {
+      id: 9, tema: 'orto', tag: 'Ortopédica', tagClass: 'orto',
+      enunciado: 'Na avaliação da estabilidade do quadril, quais estruturas são responsáveis pela estabilidade contrátil e não contrátil, respectivamente?',
+      alternativas: ['A) Ligamento redondo e ligamento transverso', 'B) Músculo glúteo médio e lábio acetabular', 'C) Músculo iliopsoas e ligamento iliofemoral', 'D) Tendão do quadríceps e ligamento patelar', 'E) Músculo adutor longo e ligamento pubofemoral'],
+      gabarito: 'B) Músculo glúteo médio e lábio acetabular',
+      explicacao: 'A estabilidade do quadril depende de estruturas CONTRÁTEIS (músculos — principalmente glúteo médio) e NÃO CONTRÁTEIS (estruturas passivas — lábio acetabular, ligamentos, cápsula articular).',
+      fonte: 'ENARE 2024/2025 — Questão sobre Estabilidade do Quadril'
+    },
+    {
+      id: 10, tema: 'orto', tag: 'Ortopédica', tagClass: 'orto',
+      enunciado: 'Um atleta sofre entorse de tornozelo grau II. Na avaliação fisioterapêutica, qual teste é mais indicado para avaliar a estabilidade dinâmica do tornozelo?',
+      alternativas: ['A) Teste de Thompson', 'B) Teste de Lachman', 'C) Teste Star Excursion Balance', 'D) Teste de McMurray', 'E) Teste de Trendelenburg'],
+      gabarito: 'C) Teste Star Excursion Balance',
+      explicacao: 'O Star Excursion Balance Test (SEBT) avalia a estabilidade dinâmica do tornozelo, exigindo controle postural em múltiplas direções. O teste de Thompson avalia o tendão calcâneo, Lachman o joelho, McMurray o menisco e Trendelenburg o quadril.',
+      fonte: 'ENARE 2024/2025 — Questão sobre Avaliação Ortopédica'
+    },
+    {
+      id: 11, tema: 'sus', tag: 'SUS / Políticas', tagClass: 'sus',
+      enunciado: 'A Política Nacional de Humanização (PNH) tem como um de seus objetivos a mudança do objeto do trabalho em saúde. Qual das alternativas NÃO representa um objetivo desta política?',
+      alternativas: ['A) Melhoria do acesso dos usuários', 'B) Acolhimento como porta de entrada', 'C) Estruturar filas tradicionais de espera', 'D) Responsabilização dos profissionais', 'E) Autonomia do usuário'],
+      gabarito: 'C) Estruturar filas tradicionais de espera',
+      explicacao: 'A PNH busca romper com as filas tradicionais, promovendo acolhimento, vínculo e responsabilização. A manutenção de filas tradicionais é o oposto do que a política propõe.',
+      fonte: 'ENARE 2022/2023 — Questão sobre Política de Humanização'
+    },
+    {
+      id: 12, tema: 'sus', tag: 'SUS / Políticas', tagClass: 'sus',
+      enunciado: 'Segundo a Lei 8.080/1990, qual dos seguintes princípios NÃO faz parte dos diretrizes do Sistema Único de Saúde (SUS)?',
+      alternativas: ['A) Universalidade', 'B) Integralidade', 'C) Equidade', 'D) Lucratividade', 'E) Descentralização'],
+      gabarito: 'D) Lucratividade',
+      explicacao: 'Os princípios do SUS são: universalidade, integralidade, equidade, descentralização, hierarquização e participação social. Lucratividade é contrária ao caráter público e gratuito do SUS.',
+      fonte: 'ENARE 2023/2024 — Questão sobre Lei 8.080/90'
+    },
+    {
+      id: 13, tema: 'sus', tag: 'SUS / Políticas', tagClass: 'sus',
+      enunciado: 'Na sequência correta de retirada dos Equipamentos de Proteção Individual (EPIs) após atendimento a paciente com doença infectocontagiosa, qual é o ÚLTIMO item a ser removido?',
+      alternativas: ['A) Avental', 'B) Máscara', 'C) Óculos de proteção', 'D) Luvas', 'E) Touca'],
+      gabarito: 'D) Luvas',
+      explicacao: 'A sequência correta de retirada dos EPIs é: 1) Avental, 2) Óculos, 3) Máscara, 4) Touca, 5) LUVAS (sempre por último, pois as mãos estão mais contaminadas).',
+      fonte: 'ENARE 2024/2025 — Questão sobre Biossegurança'
+    },
+    {
+      id: 14, tema: 'cardio', tag: 'Cardiovascular', tagClass: 'cardio',
+      enunciado: 'Um paciente com doença cardiovascular está iniciando um programa de exercício aeróbico. Qual dos seguintes métodos NÃO é recomendado para orientar a prescrição de intensidade do exercício?',
+      alternativas: ['A) Frequência cardíaca de reserva', 'B) Escala de percepção de esforço (Borg)', 'C) Frequência cardíaca máxima', 'D) Pressão arterial de repouso', 'E) Teste de caminhada de 6 minutos'],
+      gabarito: 'D) Pressão arterial de repouso',
+      explicacao: 'A PA de repouso não orienta a intensidade do exercício. Métodos válidos: FC de reserva (Karvonen), FC máxima, Escala de Borg (percepção de esforço), TC6 (capacidade funcional).',
+      fonte: 'ENARE 2024/2025 — Questão sobre Prescrição de Exercício'
+    },
+    {
+      id: 15, tema: 'cardio', tag: 'Cardiovascular', tagClass: 'cardio',
+      enunciado: 'No Programa Hiperdia, qual ação representa a prevenção PRIMÁRIA da hipertensão arterial?',
+      alternativas: ['A) Controle da pressão arterial em hipertensos', 'B) Tratamento medicamentoso de pacientes com HAS', 'C) Orientação sobre fatores de risco e hábitos saudáveis', 'D) Prevenção de complicações em hipertensos', 'E) Rastreamento de hipertensão em familiares'],
+      gabarito: 'C) Orientação sobre fatores de risco e hábitos saudáveis',
+      explicacao: 'Prevenção primária = evitar que a doença ocorra (orientação sobre fatores de risco: atividade física, alimentação, não fumar). Secundária = diagnóstico precoce. Terciária = prevenção de complicações.',
+      fonte: 'ENARE 2024/2025 — Questão sobre Programa Hiperdia'
+    },
+    {
+      id: 16, tema: 'bioetica', tag: 'Bioética', tagClass: 'bioetica',
+      enunciado: 'Um fisioterapeuta avalia um atleta e identifica que ele não está apto a retornar às atividades. Apesar disso, o fisioterapeuta libera o atleta, que sofre lesão grave durante o jogo. Qual tipo de erro médico foi cometido?',
+      alternativas: ['A) Negligência', 'B) Imprudência', 'C) Imperícia', 'D) Omissão', 'E) Culpa leve'],
+      gabarito: 'B) Imprudência',
+      explicacao: 'Imprudência = assumir risco sabendo do perigo (liberou atleta sabendo que não estava apto). Negligência = desleixo, não identificou. Imperícia = incompetência técnica.',
+      fonte: 'ENARE 2024/2025 — Questão sobre Erros Médicos'
+    },
+    {
+      id: 17, tema: 'bioetica', tag: 'Bioética', tagClass: 'bioetica',
+      enunciado: 'Segundo o Código de Ética do Fisioterapeuta, qual é a conduta correta quando o profissional identifica um erro de outro colega que colocou o paciente em risco?',
+      alternativas: ['A) Manter sigilo para preservar a imagem da categoria', 'B) Denunciar ao conselho regional de fisioterapia', 'C) Conversar apenas com o colega envolvido', 'D) Ignorar o fato se não houve dano ao paciente', 'E) Notificar apenas o hospital'],
+      gabarito: 'B) Denunciar ao conselho regional de fisioterapia',
+      explicacao: 'O Código de Ética estabelece o dever de denúncia quando há risco ao paciente. O sigilo profissional não se aplica a situações que colocam a vida ou integridade do paciente em risco.',
+      fonte: 'ENARE 2023/2024 — Questão sobre Código de Ética'
+    },
+    {
+      id: 18, tema: 'eletro', tag: 'Eletroterapia', tagClass: 'eletro',
+      enunciado: 'Um paciente com dor lombar crônica será tratado com TENS. Qual a principal indicação deste recurso eletroterapêutico?',
+      alternativas: ['A) Fortalecimento muscular', 'B) Analgesia', 'C) Cicatrização de feridas', 'D) Aumento da amplitude de movimento', 'E) Redução do edema'],
+      gabarito: 'B) Analgesia',
+      explicacao: 'TENS (Transcutaneous Electrical Nerve Stimulation) é indicado principalmente para ANALGESIA, atuando pelo controle da porta (Gate Control Theory) e liberação de endorfinas. É portátil e de fácil aplicação.',
+      fonte: 'ENARE 2023/2024 — Questão sobre Eletroterapia'
+    },
+    {
+      id: 19, tema: 'eletro', tag: 'Eletroterapia', tagClass: 'eletro',
+      enunciado: 'Na aplicação de ultrassom terapêutico, qual a diferença entre o modo contínuo e o modo pulsado?',
+      alternativas: ['A) O contínuo penetra mais profundamente', 'B) O pulsado produz efeito térmico', 'C) O contínuo produz efeito térmico', 'D) O pulsado é mais indicado para cicatrização', 'E) Não há diferença entre os modos'],
+      gabarito: 'C) O contínuo produz efeito térmico',
+      explicacao: 'Ultrassom CONTÍNUO produz efeito TÉRMICO (aquecimento dos tecidos). O PULSADO não produz aquecimento significativo, sendo indicado em fases agudas ou quando o calor é contraindicado.',
+      fonte: 'ENARE 2022/2023 — Questão sobre Ultrassom'
+    },
+    {
+      id: 20, tema: 'neuro', tag: 'Neurofuncional', tagClass: 'neuro',
+      enunciado: 'Na Escala de Ashworth Modificada, um paciente apresenta aumento considerável do tônus muscular, dificultando a movimentação passiva, mas o membro ainda pode ser movimentado. Qual a pontuação?',
+      alternativas: ['A) 0', 'B) 1', 'C) 2', 'D) 3', 'E) 4'],
+      gabarito: 'C) 2',
+      explicacao: 'Ashworth Modificada: 0 = normal; 1 = leve aumento; 1+ = leve aumento com catch; 2 = aumento mais marcado, mas fácil de mover; 3 = considerável aumento, difícil de mover; 4 = afetado em flexão ou extensão rígida.',
+      fonte: 'ENARE 2023/2024 — Questão sobre Escala Ashworth'
+    },
+    {
+      id: 21, tema: 'resp', tag: 'Respiratória', tagClass: 'resp',
+      enunciado: 'Qual parâmetro da ventilação mecânica é responsável por manter a pressão positiva no final da expiração, evitando o colapso alveolar?',
+      alternativas: ['A) FiO2', 'B) PEEP', 'C) VT', 'D) FR', 'E) I:E'],
+      gabarito: 'B) PEEP',
+      explicacao: 'PEEP (Positive End-Expiratory Pressure) = pressão positiva no final da expiração. Previne o colapso alveolar, melhora a relação ventilação/perfusão e aumenta a complacência pulmonar.',
+      fonte: 'ENARE 2023/2024 — Questão sobre Ventilação Mecânica'
+    },
+    {
+      id: 22, tema: 'orto', tag: 'Ortopédica', tagClass: 'orto',
+      enunciado: 'O teste de Lachman é utilizado para avaliar a integridade de qual estrutura ligamentosa do joelho?',
+      alternativas: ['A) Ligamento colateral lateral (LCL)', 'B) Ligamento colateral medial (LCM)', 'C) Ligamento cruzado anterior (LCA)', 'D) Ligamento cruzado posterior (LCP)', 'E) Menisco medial'],
+      gabarito: 'C) Ligamento cruzado anterior (LCA)',
+      explicacao: 'O teste de Lachman avalia a integridade do LCA (Ligamento Cruzado Anterior). É considerado o teste mais sensível para lesão do LCA. O teste de drawer anterior também avalia o LCA.',
+      fonte: 'ENARE 2022/2023 — Questão sobre Testes do Joelho'
+    },
+    {
+      id: 23, tema: 'sus', tag: 'SUS / Políticas', tagClass: 'sus',
+      enunciado: 'A Portaria nº 2.436/2017 instituiu a Política Nacional de Atenção Básica (PNAB). Qual das seguintes ações NÃO faz parte das atribuições da Atenção Básica?',
+      alternativas: ['A) Acolhimento e vínculo', 'B) Coordenação do cuidado', 'C) Cirurgias de alta complexidade', 'D) Vigilância em saúde', 'E) Promoção da saúde'],
+      gabarito: 'C) Cirurgias de alta complexidade',
+      explicacao: 'A Atenção Básica é porta de entrada do SUS e realiza acolhimento, vínculo, coordenação do cuidado, vigilância e promoção da saúde. Cirurgias de alta complexidade são realizadas na Atenção Hospitalar/Especializada.',
+      fonte: 'ENARE 2023/2024 — Questão sobre PNAB'
+    },
+    {
+      id: 24, tema: 'cardio', tag: 'Cardiovascular', tagClass: 'cardio',
+      enunciado: 'Um paciente hipertenso inicia treinamento resistido. Qual o efeito esperado da atividade física sobre a pressão arterial?',
+      alternativas: ['A) Aumento da PA sistólica e diastólica', 'B) Redução da PA sistólica e diastólica', 'C) Aumento apenas da PA sistólica', 'D) Nenhum efeito sobre a PA', 'E) Redução apenas da PA diastólica'],
+      gabarito: 'B) Redução da PA sistólica e diastólica',
+      explicacao: 'O exercício físico regular (aeróbio e resistido) reduz tanto a PA sistólica quanto a diastólica, com efeito similar ao de anti-hipertensivos. O efeito hipotensor pode persistir por até 24h após o exercício.',
+      fonte: 'ENARE 2024/2025 — Questão sobre Hipertensão e Exercício'
+    },
+    {
+      id: 25, tema: 'bioetica', tag: 'Bioética', tagClass: 'bioetica',
+      enunciado: 'Qual princípio bioético está relacionado ao dever de não causar dano ao paciente?',
+      alternativas: ['A) Autonomia', 'B) Beneficência', 'C) Não maleficência', 'D) Justiça', 'E) Veracidade'],
+      gabarito: 'C) Não maleficência',
+      explicacao: 'Não maleficência = primum non nocere (primeiro, não causar dano). Beneficência = promover o bem. Autonomia = respeito às decisões do paciente. Justiça = equidade no acesso. Veracidade = dizer a verdade.',
+      fonte: 'ENARE 2022/2023 — Questão sobre Princípios Bioéticos'
+    }
+  ];
+
+  let currentQuestions = [...allQuestions];
+  let currentIndex = 0;
+  let acertos = 0;
+  let erros = 0;
+  let answered = new Set();
+
+  function renderCard() {
+    const q = currentQuestions[currentIndex];
+    const card = document.getElementById('flashcard');
+    card.classList.remove('flipped');
+
+    document.getElementById('card-tag').textContent = q.tag;
+    document.getElementById('card-tag').className = 'card-tag ' + q.tagClass;
+    document.getElementById('card-enunciado').textContent = q.enunciado;
+
+    const altContainer = document.getElementById('card-alternativas');
+    altContainer.innerHTML = '';
+    q.alternativas.forEach(alt => {
+      const div = document.createElement('div');
+      div.className = 'card-alt';
+      div.textContent = alt;
+      if (alt === q.gabarito) div.dataset.correct = 'true';
+      altContainer.appendChild(div);
+    });
+
+    document.getElementById('card-resposta').textContent = 'Gabarito: ' + q.gabarito;
+    document.getElementById('card-explicacao').textContent = q.explicacao;
+    document.getElementById('card-fonte').textContent = 'Fonte: ' + q.fonte;
+
+    document.getElementById('q-current').textContent = currentIndex + 1;
+    document.getElementById('q-total').textContent = currentQuestions.length;
+    document.getElementById('q-acertos').textContent = acertos;
+    document.getElementById('q-erros').textContent = erros;
+
+    const progress = ((currentIndex + 1) / currentQuestions.length) * 100;
+    document.getElementById('quiz-progress-bar').style.width = progress + '%';
+
+    // Reset buttons
+    document.querySelectorAll('.btn-action').forEach(b => b.classList.remove('answered'));
+    if (answered.has(q.id)) {
+      document.querySelectorAll('.btn-action').forEach(b => b.classList.add('answered'));
+    }
+  }
+
+  function flipCard() {
+    document.getElementById('flashcard').classList.toggle('flipped');
+    // Highlight correct answer on front
+    document.querySelectorAll('.card-alt').forEach(alt => {
+      if (alt.dataset.correct === 'true') alt.classList.add('correct');
+    });
+  }
+
+  function nextCard() {
+    if (currentIndex < currentQuestions.length - 1) {
+      currentIndex++;
+      renderCard();
+    }
+  }
+
+  function prevCard() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      renderCard();
+    }
+  }
+
+  function markCorrect() {
+    const q = currentQuestions[currentIndex];
+    if (!answered.has(q.id)) {
+      acertos++;
+      answered.add(q.id);
+      document.getElementById('q-acertos').textContent = acertos;
+      document.querySelectorAll('.btn-action').forEach(b => b.classList.add('answered'));
+      document.getElementById('card-resposta').className = 'card-resposta correct-ans';
+    }
+  }
+
+  function markWrong() {
+    const q = currentQuestions[currentIndex];
+    if (!answered.has(q.id)) {
+      erros++;
+      answered.add(q.id);
+      document.getElementById('q-erros').textContent = erros;
+      document.querySelectorAll('.btn-action').forEach(b => b.classList.add('answered'));
+      document.getElementById('card-resposta').className = 'card-resposta wrong-ans';
+    }
+  }
+
+  function filterQuiz(tema) {
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    if (tema === 'todos') {
+      currentQuestions = [...allQuestions];
+    } else {
+      currentQuestions = allQuestions.filter(q => q.tema === tema);
+    }
+    currentIndex = 0;
+    renderCard();
+  }
+
+  function resetQuiz() {
+    currentIndex = 0;
+    acertos = 0;
+    erros = 0;
+    answered = new Set();
+    currentQuestions = [...allQuestions];
+    document.querySelectorAll('.filter-btn').forEach((btn, i) => {
+      btn.classList.toggle('active', i === 0);
+    });
+    renderCard();
+  }
+
+  // Initialize
+  renderCard();
+
 </script>
 
 </body>
